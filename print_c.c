@@ -1,14 +1,20 @@
 #include "main.h"
 /**
  * print_c - prints a character
- * @symbol: conversion specifier symbol
- * Return: function to pointer symbil matched
+ * @list: a va_list pointing to the list to print
+ * @buffer: a char buffer to store chars in
+ * Return: Always 1
  */
 
-void print_c(va_list list)
+int print_c(va_list list, char *buffer)
 {
-	char ch;
+	unsigned char ch;
 
 	ch = va_arg(list, int);
-	write(1, &ch, 1);
+	if (ch == '\0')
+	{
+		return (1);
+	}
+	*buffer = ch;
+	return (1);
 }
