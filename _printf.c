@@ -15,7 +15,7 @@ int _putchars(char c)
  * print_string - prints string
  * @s - array of characters
  */
-void print_string (char *s)
+void print_string(char *s)
 {
 	int i = 0;
 	while (s[i] != '\0')
@@ -35,21 +35,22 @@ int _printf(const char *format, ...)
 
 	for (traverse = format; *traverse != '\0'; traverse++)
 	{
-		while (*traverse != '%');
+		while (*traverse != '%')
 		{
 			_putchars(*traverse);
 			traverse++;
 		}
 		traverse++;
 
-		switch(*traverse)
+		if (*traverse == 'c')
 		{
-			case 'c': i = va_arg(arg, int);
-				  _putchars(i);
-				  break;
-			case 's': s = va_arg(arg, char *);
-				  print_string(s);
-				  break;
+			i = va_arg(arg, int);
+			_putchars(i);
+		}
+		else if (*traverse == 's')
+		{
+			s = va_arg(arg, char *);
+			print_string(s);
 		}
 
 	}
