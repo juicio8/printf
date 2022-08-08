@@ -9,7 +9,7 @@ typedef struct formatter {
 		char * letter;
 		void (*f)(va_list list);
 } format_me;
-void (*converter(char *))(va_list list);
+void (*converter(const char *))(va_list list);
 void print_c(va_list list);
 void print_s(va_list list);
 void print_d(va_list list);

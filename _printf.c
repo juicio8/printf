@@ -1,11 +1,11 @@
 #include "main.h"
 /**
  * _printf - does things
- * @format: character string;
+ * @format: character string
  * Return: 0
  */
 
-int _print(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	int i;
 	va_list args;
@@ -22,5 +22,5 @@ int _print(const char *format, ...)
 			write(1, format + i, 1);
 		}
 	}
-	return(0);
+	return (0);
 }

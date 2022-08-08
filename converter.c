@@ -9,11 +9,11 @@ void (*converter(const char *symbol))(va_list list)
 	format_me func[] = {
 		{"c", print_c},
 		{"s", print_s},
-	/*	{"d", print_d},
+	     /*	{"d", print_d},
 		{"i", print_i}*/
 	};
 	int i;
-	
+
 	for (i = 0; i < 4; i++)
 	{
 		if (*symbol == *(func[i].letter))
