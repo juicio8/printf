@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <unistd.h>
 /**
  * _putchars - writes characters.
  * @c - character
@@ -20,12 +21,12 @@ void print_string (char *s)
 	while (s[i] != '\0')
 	{
 		_putchars(s[i]);
-		i++
+		i++;
 	}
 }
 int _printf(const char *format, ...)
 {
-	char *traverse;
+	const char *traverse;
 	unsigned int i;
 	char *s;
 
@@ -46,7 +47,7 @@ int _printf(const char *format, ...)
 			case 'c': i = va_arg(arg, int);
 				  _putchars(i);
 				  break;
-			case 's': s = va_arg(arg, char *)
+			case 's': s = va_arg(arg, char *);
 				  print_string(s);
 				  break;
 		}
