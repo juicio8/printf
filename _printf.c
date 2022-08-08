@@ -7,20 +7,23 @@
 
 int _printf(const char *format, ...)
 {
-	int i;
+	int i, ret = 0;
 	va_list args;
 
 	va_start(args, format);
-	for (i = 0; *(format + i) != '\0'; i++)
+	for (i = 0; *(format + i); i++)
 	{
 		if (*(format + i) == '%')
 		{
-			converter(format + ++i)(args);
+			i++;
+			if (*(format + i) != '%')
+			{
+				converter(format + i)(args);
+				continue;
+			}
 		}
-		else
-		{
-			write(1, format + i, 1);
-		}
+		write(1, (format + i), 1);
+		ret++;
 	}
 	return (0);
 }

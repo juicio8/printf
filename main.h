@@ -5,9 +5,14 @@
 #include <stdio.h>
 #include <unistd.h>
 int _printf(const char *format, ...);
-typedef struct formatter {
-		char * letter;
-		void (*f)(va_list list);
+/**
+ * @letter: A conversion specifier
+ * @f: A function pointer to a print function with a corresponding letter
+ */
+typedef struct formatter
+{
+	char * letter;
+	void (*f)(va_list list);
 } format_me;
 void (*converter(const char *))(va_list list);
 void print_c(va_list list);
