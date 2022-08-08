@@ -1,65 +1,26 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "main.h"
 /**
- * _putchars - writes characters.
- * @c: character
- * Return: character
- */
-int _putchars(char c)
-{
-	return (write(1, &c, 1));
-}
-/**
- * print_string - prints string
- * @s: array of characters
- */
-void print_string(char *s)
-{
-	int i = 0;
-
-	while (s[i] != '\n' && s[i] != '\0')
-	{
-		_putchars(s[i]);
-		i++;
-	}
-}
-/**
- * _printf - printf function
- * @format: format of arg
+ * _printf - does things
+ * @format: character string;
  * Return: 0
  */
-int _printf(const char *format, ...)
+
+int _print(const char *format, ...)
 {
-	const char *traverse;
-	unsigned int i;
-	char *s;
-	va_list arg;
+	int i;
+	va_list args;
 
-	va_start(arg, format);
-
-	for (traverse = format; *traverse != '\0'; traverse++)
+	va_start(args, format);
+	for (i = 0; *(format + i) != '\0'; i++)
 	{
-		while (*traverse != '%' && *traverse != '\0')
+		if (*(format + i) == '%')
 		{
-			_putchars(*traverse);
-			traverse++;
+			converter(format + ++i)(args);
 		}
-		traverse++;
-
-		if (*traverse == 'c')
+		else
 		{
-			i = va_arg(arg, int);
-			_putchars(i);
+			write(1, format + i, 1);
 		}
-		else if (*traverse == 's')
-		{
-			s = va_arg(arg, char *);
-			print_string(s);
-		}
-
 	}
-	va_end(arg);
-	return (0);
+	return(0);
 }

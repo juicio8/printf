@@ -1,8 +1,18 @@
 #ifndef MAIN_H
 #define MAIN_H
-
-int _putchars(char c);
-void print_string(char *s);
+#include <stdarg.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
 int _printf(const char *format, ...);
+typedef struct formatter {
+		char * letter;
+		void (*f)(va_list list);
+} format_me;
+void (*converter(char *))(va_list list);
+void print_c(va_list list);
+void print_s(va_list list);
+void print_d(va_list list);
+void print_i(va_list list);
 
 #endif
