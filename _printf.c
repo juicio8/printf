@@ -19,7 +19,7 @@ void print_string(char *s)
 {
 	int i = 0;
 
-	while (s[i] != '\0')
+	while (s[i] != '\n' && s[i] != '\0')
 	{
 		_putchars(s[i]);
 		i++;
@@ -41,7 +41,7 @@ int _printf(const char *format, ...)
 
 	for (traverse = format; *traverse != '\0'; traverse++)
 	{
-		while (*traverse != '%')
+		while (*traverse != '%' && *traverse != '\0')
 		{
 			_putchars(*traverse);
 			traverse++;
