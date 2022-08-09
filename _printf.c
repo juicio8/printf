@@ -7,7 +7,7 @@
 
 int _printf(const char *format, ...)
 {
-	int i, ret, len = 0, add = 1;
+	int i,percents = 0, ret, len = 0, add = 1;
 	va_list args;
 	char *buffer, *buffer_ptr;
 
@@ -21,11 +21,8 @@ int _printf(const char *format, ...)
 	{
 		if (*(format + i) == '%')
 		{
-			if (*(format + i + 1) == '\0')
-			{
-				ret = -1;
-				break;
-			}
+			
+			percents++;
 			if (converter(format + i + 1))
 			{
 				i++;
@@ -33,7 +30,13 @@ int _printf(const char *format, ...)
 				buffer += add;
 				len += add;
 				ret = len;
+				percents--;
 				continue;
+			}
+			if (*(format + i + 1) == '\0' && percents == 1)
+			{
+				ret = -1;
+				break;
 			}
 		}
 		*buffer = *(format + i);

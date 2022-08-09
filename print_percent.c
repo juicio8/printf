@@ -1,4 +1,4 @@
-#include "main.c"
+#include "main.h"
 /**
  * print_percent - Prints a %
  * @list: A va_list pointing to the % to print.
